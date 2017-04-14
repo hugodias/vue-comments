@@ -4,8 +4,13 @@
       <img src="https://placehold.it/150x150">
     </div>
     <div class="comment-body">
-      <h4>{{ username }}</h4>
-      <p>{{ text }}</p>
+      <div class="text">
+        <h4>{{ username }}</h4>
+        <p>{{ text }}</p>
+      </div>
+      <footer>
+        <a v-on:click="like">{{ likes }} curtidas</a>
+      </footer>
     </div>
   </div>
 </template>
@@ -14,6 +19,23 @@
 export default {
   name: 'comment',
   props: ['text', 'username'],
+  data() {
+    return {
+      likes: 0,
+      liked: false,
+    };
+  },
+  methods: {
+    like() {
+      if (!this.liked) {
+        this.likes += 1;
+        this.liked = true;
+      } else {
+        this.likes -= 1;
+        this.liked = false;
+      }
+    },
+  },
 };
 </script>
 
@@ -26,6 +48,11 @@ export default {
   width: 500px;
   border: 1px solid #EEE;
   padding: 15px;
+  margin-bottom: 20px;
+}
+.text {
+  float: left;
+  width: 100%;
 }
 .avatar {
   float: left;
@@ -47,5 +74,15 @@ p {
   margin: 0;
   font-size: 14px;
   float: left;
+}
+footer {
+  float: left;
+  width: 100%;
+  height: 20px;
+  padding-top: 13px;
+}
+a {
+  font-weight: bold;
+  cursor: pointer;
 }
 </style>

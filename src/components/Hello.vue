@@ -22,10 +22,7 @@ import Comment from '@/components/Comment';
 export default {
   name: 'hello',
   methods: {
-    saveMessage(event) {
-      console.log(event);
-      console.log(this.message);
-
+    saveMessage() {
       this.comments.push({
         id: this.comments.lenght + 1,
         text: this.message,
