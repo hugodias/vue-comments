@@ -89,6 +89,7 @@ a {
 time {
   font-size: 11px;
   margin-bottom: 8px;
+  width: 100%;
   float: left;
 }
 </style>
