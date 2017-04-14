@@ -2,6 +2,8 @@
 
 > Comment system project made using VueJS
 
+![Vue comments](vue-comments.jpg)
+
 ## Build Setup
 
 ``` bash
