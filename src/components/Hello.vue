@@ -10,6 +10,7 @@
          v-for="comment in comments"
          v-bind:key="comment"
          v-bind:text="comment.text"
+         v-bind:created_at="comment.created_at"
          v-bind:username="comment.username"></comment>
     </div>
 
@@ -41,6 +42,7 @@ export default {
           id: 1,
           text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Post enim Chrysippum eum non sane est disputatum.',
           username: 'Hugo Dias',
+          created_at: Date.now(),
         },
       ],
     };

@@ -6,10 +6,11 @@
     <div class="comment-body">
       <div class="text">
         <h4>{{ username }}</h4>
+        <time>{{ created_at | moment("dddd, MMM Do YYYY") }}</time>
         <p>{{ text }}</p>
       </div>
       <footer>
-        <a v-on:click="like">{{ likes }} curtidas</a>
+        <a v-on:click="like">{{ likes }} likes</a>
       </footer>
     </div>
   </div>
@@ -18,7 +19,7 @@
 <script>
 export default {
   name: 'comment',
-  props: ['text', 'username'],
+  props: ['text', 'username', 'created_at'],
   data() {
     return {
       likes: 0,
@@ -84,5 +85,10 @@ footer {
 a {
   font-weight: bold;
   cursor: pointer;
+}
+time {
+  font-size: 11px;
+  margin-bottom: 8px;
+  float: left;
 }
 </style>
