@@ -6,12 +6,21 @@
     <div class="comment-body">
       <div class="text">
         <h4>{{ username }}</h4>
-        <time>{{ created_at | moment("dddd, MMM Do YYYY") }}</time>
+        <time>{{ created_at | moment("MMMM Do YYYY, h:mm:ss a") }}</time>
         <p>{{ text }}</p>
       </div>
       <footer>
-        <a v-on:click="like">{{ likes }} likes</a>
+        <div class="actions">
+          <a v-on:click="like" v-if="!liked">Like</a>
+        </div>
+        <div class="info">
+          {{ likes }} likes .
+          {{ replies.length }} replies .
+        </div>
       </footer>
+      <div class="reply">
+        <input type="text">
+      </div>
     </div>
   </div>
 </template>
@@ -24,6 +33,7 @@ export default {
     return {
       likes: 0,
       liked: false,
+      replies: [],
     };
   },
   methods: {
@@ -31,9 +41,6 @@ export default {
       if (!this.liked) {
         this.likes += 1;
         this.liked = true;
-      } else {
-        this.likes -= 1;
-        this.liked = false;
       }
     },
   },
@@ -41,10 +48,8 @@ export default {
 </script>
 
 <style scoped>
-* {
-  text-align: left;
-}
 .comment {
+  text-align: left;
   float: left;
   width: 500px;
   border: 1px solid #EEE;
@@ -81,6 +86,9 @@ footer {
   width: 100%;
   height: 20px;
   padding-top: 13px;
+  border-bottom: 1px solid #EEE;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
 }
 a {
   font-weight: bold;
@@ -91,5 +99,11 @@ time {
   margin-bottom: 8px;
   width: 100%;
   float: left;
+}
+.actions {
+  float: left;
+}
+.info {
+  float: right;
 }
 </style>

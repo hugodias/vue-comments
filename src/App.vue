@@ -23,5 +23,6 @@ export default {
 
 #app > img {
   width: 100px;
+  margin-bottom: 20px;
 }
 </style>

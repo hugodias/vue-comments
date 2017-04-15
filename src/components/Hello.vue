@@ -1,7 +1,5 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-
     <div class="comments">
       <input v-model="message" v-on:keyup.enter="saveMessage" placeholder="Comment here">
       <button v-on:click="saveMessage">Comment</button>
@@ -28,6 +26,7 @@ export default {
         id: this.comments.lenght + 1,
         text: this.message,
         username: 'Hugo Dias',
+        created_at: Date.now(),
       });
 
       this.message = '';
@@ -36,7 +35,6 @@ export default {
   data() {
     return {
       message: '',
-      msg: 'Latest comments',
       comments: [
         {
           id: 1,
