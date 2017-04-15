@@ -2,7 +2,7 @@
 
 > Simple comment system project made using VueJS
 
-![Vue comments](vue-comments.jpg)
+![Vue comments](vue-comments.gif)
 
 ## Build Setup
 

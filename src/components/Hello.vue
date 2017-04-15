@@ -9,7 +9,8 @@
          v-bind:key="comment"
          v-bind:text="comment.text"
          v-bind:created_at="comment.created_at"
-         v-bind:username="comment.username"></comment>
+         v-bind:username="comment.username"
+         v-bind:comment_type="'parent'"></comment>
     </div>
 
   </div>
@@ -35,14 +36,7 @@ export default {
   data() {
     return {
       message: '',
-      comments: [
-        {
-          id: 1,
-          text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Post enim Chrysippum eum non sane est disputatum.',
-          username: 'Hugo Dias',
-          created_at: Date.now(),
-        },
-      ],
+      comments: [],
     };
   },
   components: {
