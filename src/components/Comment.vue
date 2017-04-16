@@ -28,11 +28,12 @@
 
         <div class="replies">
           <comment v-for="children in replies"
-                   v-bind:key="children"
-                   v-bind:text="children.text"
-                   v-bind:created_at="children.created_at"
-                   v-bind:username="children.username"
-                   v-bind:comment_type="'child'"></comment>
+                   :key="children"
+                   :id="children.id"
+                   :text="children.text"
+                   :created_at="children.created_at"
+                   :username="children.username"
+                   :comment_type="'child'"></comment>
         </div>
       </div>
     </div>
@@ -40,9 +41,10 @@
 </template>
 
 <script>
+
 export default {
   name: 'comment',
-  props: ['text', 'username', 'created_at', 'comment_type'],
+  props: ['id', 'text', 'username', 'created_at', 'comment_type'],
   data() {
     return {
       parentClass: 'parent',
@@ -52,6 +54,11 @@ export default {
       liked: false,
       replies: [],
     };
+  },
+  created() {
+    if (this.isParent()) {
+      this.fetchReplies();
+    }
   },
   methods: {
     isParent() {
@@ -72,6 +79,16 @@ export default {
       });
 
       this.replyText = '';
+    },
+    fetchReplies() {
+      const apiURL = `https://demo1299998.mockable.io/comments/${this.id}`;
+      const self = this;
+
+      this.$http.get(apiURL).then((response) => {
+        self.replies = response.body;
+      }, (response) => {
+        console.log(response);
+      });
     },
   },
 };

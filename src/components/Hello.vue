@@ -6,11 +6,12 @@
       <hr/>
       <comment
          v-for="comment in comments"
-         v-bind:key="comment"
-         v-bind:text="comment.text"
-         v-bind:created_at="comment.created_at"
-         v-bind:username="comment.username"
-         v-bind:comment_type="'parent'"></comment>
+         :key="comment"
+         :id="comment.id"
+         :text="comment.text"
+         :created_at="comment.created_at"
+         :username="comment.username"
+         :comment_type="'parent'"></comment>
     </div>
 
   </div>
@@ -19,8 +20,13 @@
 <script>
 import Comment from '@/components/Comment';
 
+const apiURL = 'https://demo1299998.mockable.io/comments';
+
 export default {
   name: 'hello',
+  created() {
+    this.fetchData();
+  },
   methods: {
     saveMessage() {
       this.comments.push({
@@ -31,6 +37,15 @@ export default {
       });
 
       this.message = '';
+    },
+    fetchData() {
+      const self = this;
+
+      this.$http.get(apiURL).then((response) => {
+        self.comments = response.body;
+      }, (response) => {
+        console.log(response);
+      });
     },
   },
   data() {
@@ -92,6 +107,7 @@ button {
   padding: 10px 15px;
   font-weight: bold;
 }
+
 hr {
   clear: both;
   border: 1px solid #EEE;
