@@ -11,6 +11,7 @@
          :text="comment.text"
          :created_at="comment.created_at"
          :username="comment.username"
+         :likes="comment.likes"
          :comment_type="'parent'"></comment>
     </div>
 
@@ -34,6 +35,7 @@ export default {
         text: this.message,
         username: 'Hugo Dias',
         created_at: Date.now(),
+        likes: 0,
       });
 
       this.message = '';

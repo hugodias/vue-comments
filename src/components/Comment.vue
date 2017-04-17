@@ -33,6 +33,7 @@
                    :text="children.text"
                    :created_at="children.created_at"
                    :username="children.username"
+                   :likes="children.likes"
                    :comment_type="'child'"></comment>
         </div>
       </div>
@@ -44,13 +45,12 @@
 
 export default {
   name: 'comment',
-  props: ['id', 'text', 'username', 'created_at', 'comment_type'],
+  props: ['id', 'text', 'username', 'created_at', 'comment_type', 'likes'],
   data() {
     return {
       parentClass: 'parent',
       childrenClass: 'children',
       replyText: '',
-      likes: 0,
       liked: false,
       replies: [],
     };
@@ -76,6 +76,7 @@ export default {
         text: this.replyText,
         username: 'Hugo Dias',
         created_at: Date.now(),
+        likes: 0,
       });
 
       this.replyText = '';
