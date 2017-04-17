@@ -15,7 +15,7 @@
           <a v-on:click="like" v-if="!liked">Like</a>
         </div>
         <div class="info">
-          {{ likes }} likes .
+          {{ score }} likes .
           <span v-if="isParent()">
             {{ replies.length }} replies .
           </span>
@@ -51,6 +51,7 @@ export default {
       parentClass: 'parent',
       childrenClass: 'children',
       replyText: '',
+      score: this.likes,
       liked: false,
       replies: [],
     };
@@ -66,7 +67,7 @@ export default {
     },
     like() {
       if (!this.liked) {
-        this.likes += 1;
+        this.score += 1;
         this.liked = true;
       }
     },
